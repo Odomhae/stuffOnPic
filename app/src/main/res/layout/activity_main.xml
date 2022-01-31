@@ -1,15 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewPager"
+    <!-- 탭 메뉴 영역 -->
+    <LinearLayout
+        android:id="@+id/llayout_tab"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_alignParentTop="true"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:background="#505050">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <RelativeLayout
+            android:id="@+id/rlayout_tab_letter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab_letter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="글"
+                android:textSize="12sp"
+                android:textColor="@drawable/selector_txt_tab"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2.6dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_bottom_line_tab"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rlayout_tab_list"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="리스트"
+                android:textSize="12sp"
+                android:textColor="@drawable/selector_txt_tab"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2.6dp"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/selector_bottom_line_tab"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <!-- 뷰페이저 영역 -->
+    <LinearLayout
+        android:layout_below="@+id/llayout_tab"
+        android:layout_above="@+id/llayout_share"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never" />
+
+    </LinearLayout>
+
+    <!-- 이미지 공유 버튼 -->
+    <LinearLayout
+        android:id="@+id/llayout_share"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/bt_add_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:text="이미지 추가"
+            android:layout_gravity="center" />
+
+    </LinearLayout>
+
+</RelativeLayout>
