@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
         vpContent = findViewById(R.id.vp_content)
         vpContent.overScrollMode = View.OVER_SCROLL_NEVER
-        vpContent.adapter = viewPagerAdapter(supportFragmentManager)
+        vpContent.adapter = ViewpagerAdapter(supportFragmentManager)
         vpContent.offscreenPageLimit = 3
         vpContent.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
             //페이지 넘길
@@ -112,7 +112,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    internal inner class viewPagerAdapter(fragmentManager: FragmentManager) :
+    internal inner class ViewpagerAdapter(fragmentManager: FragmentManager) :
         FragmentPagerAdapter(fragmentManager) {
 
         override fun getItem(position: Int): Fragment {
