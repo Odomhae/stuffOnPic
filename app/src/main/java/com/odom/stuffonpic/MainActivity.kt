@@ -24,9 +24,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var vpContent : ViewPager
 
-    var rlayout_tab_letter :  RelativeLayout?= null
-    var rlayout_tab_list :  RelativeLayout?= null
-    var bt_add_image : Button?= null
+    private var rlayout_tab_letter :  RelativeLayout?= null
+    private var rlayout_tab_list :  RelativeLayout?= null
+    private var bt_add_image : Button?= null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
