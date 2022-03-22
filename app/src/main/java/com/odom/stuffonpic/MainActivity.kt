@@ -6,15 +6,18 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.RelativeLayout
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.odom.stuffonpic.fragment.LetterFragment
 import com.odom.stuffonpic.fragment.ListFragment
+import com.github.dhaval2404.imagepicker.ImagePicker
 
 class MainActivity : AppCompatActivity() {
 
@@ -68,20 +71,25 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         // 이미지 선택
-        if (resultCode == Activity.RESULT_OK) {
+        when (resultCode) {
+            Activity.RESULT_OK -> {
 
-            //    val file = ImagePicker.getFile(data)!!
+                val intent = Intent(this, ImageViewerActivity::class.java)
+                val fileUri = data?.data!!
+                // 이미지 선택
+                intent.putExtra("fileName", fileUri)
+                // 액티비티 실행
+                startActivity(intent)
+            }
 
-            val intent = Intent(this, ImageViewerActivity::class.java)
-            // 이미지 선택
-            //  intent.putExtra("fileName", file)
-            // 액티비티 실행
-            startActivity(intent)
+            ImagePicker.RESULT_ERROR -> {
+                Toast.makeText(this, ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
+            }
 
+            else -> {
+                Toast.makeText(this, "Task Cancelled", Toast.LENGTH_SHORT).show()
+            }
         }
-        //  else if (resultCode == ImagePicker.RESULT_ERROR) {
-        //      Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-        //  }
     }
 
     private fun setLayoutTab(nPosition: Int) {
@@ -106,9 +114,9 @@ class MainActivity : AppCompatActivity() {
     private fun selectImg(position: Int) {
 
         if (position == 0) {
-            // ImagePicker.with(this).crop().galleryOnly().maxResultSize(1080, 1920).start()
+             ImagePicker.with(this).crop().galleryOnly().maxResultSize(1080, 1920).start()
         } else if (position == 1) {
-            //   ImagePicker.with(this).crop().cameraOnly().start()
+               ImagePicker.with(this).crop().cameraOnly().start()
         }
     }
 
